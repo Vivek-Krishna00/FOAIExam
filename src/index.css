@@ -33,6 +33,29 @@
   --transition-smooth: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+body.light-mode {
+  /* Brutalist high-contrast Light mode overrides */
+  --bg-primary: #f4f4f0;
+  --bg-card: #ffffff;
+  --bg-card-hover: #eaeaea;
+
+  --text-primary: #0a0a0a;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+
+  --border-stark: #0a0a0a;
+  --border-card-hover: #333333;
+  
+  --accent-chat: #0a0a0a;
+  --accent-weather: #0000ff;   /* Pure Blue */
+  --accent-currency: #ff0000;  /* Pure Red */
+  --accent-citizen: #d64d00;   /* Burnt Orange */
+  --accent-fact: #4d0099;      /* Deep Purple */
+  
+  /* Slightly darker dot grid for light mode */
+  background-image: radial-gradient(circle, #ccc 1px, transparent 1px);
+}
+
 * {
   margin: 0;
   padding: 0;

@@ -87,14 +87,14 @@ export default function CurrencyCard({ updateContext }) {
             </div>
 
             {/* Quick Converter */}
-            <div style={{ background: 'var(--border-stark)', padding: '16px', borderRadius: '4px' }}>
+            <div style={{ background: 'var(--bg-card-hover)', padding: '16px', borderRadius: '4px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
                 <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>₹</span>
                 <input 
                   type="text" 
                   value={inrInput} 
                   onChange={handleInputChange} 
-                  style={{ width: '100%', fontSize: '1.25rem', padding: '4px', border: 'none', borderBottom: '2px solid var(--accent-currency)', borderRadius: 0 }}
+                  style={{ width: '100%', fontSize: '1.25rem', padding: '4px', background: 'transparent', color: 'var(--text-primary)', border: 'none', borderBottom: '2px solid var(--accent-currency)', borderRadius: 0, outline: 'none' }}
                 />
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px', fontFamily: 'var(--font-mono)', fontSize: '0.85rem' }}>
