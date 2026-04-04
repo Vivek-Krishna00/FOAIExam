@@ -1,0 +1,271 @@
+/* ===== CivicPulse — High-Contrast Brutalist Design System ===== */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@400..800&display=swap');
+
+:root {
+  /* Backgrounds */
+  --bg-primary: #050505;
+  --bg-card: #0f0f0f;
+  --bg-card-hover: #1a1a1a;
+
+  /* Stark Accents */
+  --accent-weather: #00ffc4; /* Neon cyan/mint */
+  --accent-currency: #ff3366; /* Hot pink/red */
+  --accent-citizen: #e6ff00; /* Acid yellow */
+  --accent-fact: #bd00ff; /* Electric violet */
+  --accent-chat: #ffffff;
+
+  /* Text */
+  --text-primary: #f0f0f0;
+  --text-secondary: #888888;
+  --text-muted: #444444;
+
+  /* Borders */
+  --border-stark: #333333;
+  --border-card-hover: #555555;
+
+  /* Fonts */
+  --font-heading: 'Syne', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-body: 'Syne', sans-serif;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-smooth: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  /* Subtle dot grid pattern */
+  background-image: radial-gradient(circle, #222 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+button {
+  font-family: var(--font-mono);
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+input {
+  font-family: var(--font-mono);
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-stark);
+  padding: 8px 12px;
+  outline: none;
+}
+input:focus {
+  border-color: var(--accent-chat);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  border-left: 1px solid var(--border-stark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-stark);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Layout */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 100px;
+}
+
+.app-header {
+  margin-bottom: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 2px solid var(--border-stark);
+  padding-bottom: 24px;
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.app-header h1 {
+  font-size: 3.5rem;
+  line-height: 0.9;
+  margin: 0 0 12px 0; /* Added spacing between title and subtitle */
+}
+
+.app-header p {
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+  background: transparent;
+  border: none;
+  transition: padding-right var(--transition-smooth);
+}
+
+.chat-open .dashboard-grid {
+  padding-right: 420px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .app-header h1 {
+    font-size: 2.5rem;
+  }
+  .chat-open .dashboard-grid {
+    padding-right: 0px; /* Don't shift on mobile, let it overlay */
+  }
+}
+
+/* Shared Cards */
+.dashboard-card {
+  background: var(--bg-card);
+  padding: 32px;
+  position: relative;
+  transition: background var(--transition-fast);
+  animation: fadeInUp 0.5s ease-out backwards;
+}
+.dashboard-card:nth-child(1) { animation-delay: 0.0s; }
+.dashboard-card:nth-child(2) { animation-delay: 0.1s; }
+.dashboard-card:nth-child(3) { animation-delay: 0.2s; }
+.dashboard-card:nth-child(4) { animation-delay: 0.3s; }
+
+.dashboard-card:hover {
+  background: var(--bg-card-hover);
+}
+
+/* Top colored accent bars, brutalist style */
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-smooth);
+}
+.dashboard-card:hover::before {
+  transform: scaleX(1);
+}
+
+.card--weather::before { background: var(--accent-weather); }
+.card--currency::before { background: var(--accent-currency); }
+.card--citizen::before { background: var(--accent-citizen); }
+.card--fact::before { background: var(--accent-fact); }
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.card-header h2 {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+}
+
+.card-header .icon-wrapper {
+  padding: 8px;
+  border: 1px solid var(--border-stark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card--weather .icon-wrapper { color: var(--accent-weather); border-color: var(--accent-weather); }
+.card--currency .icon-wrapper { color: var(--accent-currency); border-color: var(--accent-currency); }
+.card--citizen .icon-wrapper { color: var(--accent-citizen); border-color: var(--accent-citizen); }
+.card--fact .icon-wrapper { color: var(--accent-fact); border-color: var(--accent-fact); }
+
+.btn-refresh {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-stark);
+  padding: 6px 12px;
+  transition: all var(--transition-fast);
+}
+.btn-refresh:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+}
+.btn-refresh .refresh-icon {
+  width: 14px;
+  height: 14px;
+}
+.btn-refresh--loading .refresh-icon {
+  animation: spin 1s linear infinite;
+}
+
+/* Card Specific Layouts */
+.data-hero {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+  font-family: var(--font-heading);
+}
+
+.data-sub {
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
