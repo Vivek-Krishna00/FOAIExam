@@ -20,7 +20,7 @@ You'll need `Node.js` installed on your machine.
 
 **1. Clone and Install Dependencies:**
 ```bash
-git clone <your-repo-link>
+git clone https://github.com/Vivek-Krishna00/FOAIExam.git
 cd FOAIExam  # Or whatever you name the folder
 npm install
 ```
